@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../helper/lista.dart';
 
 class GerenciaUser extends StatefulWidget {
-
   GerenciaUser();
 
   _GerenciaUserState createState() => _GerenciaUserState();
@@ -26,7 +25,7 @@ class _GerenciaUserState extends State<GerenciaUser> {
     Color cor = Color(0xFF54C5D0);
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           children: [
@@ -73,7 +72,7 @@ class _GerenciaUserState extends State<GerenciaUser> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
-                              color: cor),
+                              color: Colors.black),
                         ),
                         SizedBox(height: 4),
                         Text(

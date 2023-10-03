@@ -60,11 +60,6 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
           )
         ],
       ),
-      body: _pages[_selectIndex],
-      backgroundColor: Colors.grey[300],
-      bottomNavigationBar: BottomMenu(
-        onTabChange: (index) => navegacaoMenu(index),
-      ),
       drawer: Drawer(
         child: Container(
           color: Colors.white,
@@ -92,6 +87,11 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
             ],
           ),
         ),
+      ),
+      body: _pages[_selectIndex],
+      backgroundColor: Colors.grey[300],
+      bottomNavigationBar: BottomMenu(
+        onTabChange: (index) => navegacaoMenu(index),
       ),
     );
   }

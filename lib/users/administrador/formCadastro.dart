@@ -3,11 +3,9 @@ import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/users/administrador/cadastraAtleta.dart';
-import './menuPrincipalAdm.dart';
 import '../../helper/usuarios.dart';
 import '../../helper/atleta.dart';
 import '../../helper/lista.dart';
-import 'dart:async';
 
 // lista das opções para o dropdown
 const List<String> list = <String>['Administrador', 'Treinador', 'Atleta'];
@@ -41,7 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
           child: Column(

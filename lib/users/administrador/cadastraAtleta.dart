@@ -7,10 +7,10 @@ import '../../helper/usuarios.dart';
 import '../../helper/atleta.dart';
 import '../../helper/lista.dart';
 
-void main() => runApp(FormCadastro());
+void main() => runApp(CadastroAtleta());
 
-class FormCadastro extends StatelessWidget {
-  FormCadastro({Key? key}) : super(key: key);
+class CadastroAtleta extends StatelessWidget {
+  CadastroAtleta({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
