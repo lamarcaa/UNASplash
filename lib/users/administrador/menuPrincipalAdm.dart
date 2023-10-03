@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/bottomMenu.dart';
-import 'package:unasplash/users/administrador/gerenciaUusario.dart';
+import 'package:unasplash/users/administrador/gerenciaUsario.dart';
 import './formCadastro.dart';
 import '../../main.dart';
 
