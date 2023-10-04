@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:unasplash/componentes/botaoPequeno.dart';
+import 'package:unasplash/telas/formTreinoAvaliativo.dart';
 
 class Cronometro extends StatefulWidget {
   const Cronometro({super.key});
@@ -170,6 +172,16 @@ class _CronometroState extends State<Cronometro> {
                     ),
                   ),
                 ],
+              ),
+              BotaoPequeno(
+                hintText: 'Encerrar Treino',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FormTreinoAvaliativo()),
+                  );
+                },
               ),
             ],
           ),
