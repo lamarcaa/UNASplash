@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:unasplash/componentes/drawerPadrao.dart';
-import 'package:unasplash/telas/formTreinoAvaliativo.dart';
+import 'package:unasplash/telas/cronometro.dart';
 import 'package:unasplash/telas/treinoAvaliativo.dart';
 import 'package:unasplash/users/administrador/formCadastro.dart';
 import 'package:unasplash/users/administrador/gerenciaUsario.dart';
@@ -25,17 +25,19 @@ class _MenuPrincipalTreinadorState extends State<MenuPrincipalTreinador> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => FormTreinoAvaliativo()),
-        );
-        print('Clicado');
-        Icon(
-          Icons.add,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Cronometro()),
+          );
+          print('Clicado');
+        },
+        child: Icon(
+          Icons.timer_sharp,
           size: 20,
-        );
-      }),
+        ),
+      ),
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
