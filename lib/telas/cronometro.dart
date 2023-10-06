@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/botaoPequeno.dart';
+import 'package:unasplash/componentes/canvasCronometro.dart';
 import 'package:unasplash/telas/formTreinoAvaliativo.dart';
 
 class Cronometro extends StatefulWidget {
@@ -23,6 +24,7 @@ class _CronometroState extends State<Cronometro> {
   String digitoMili = "00";
   String digitoSeg = "00";
   String digitoMin = "00";
+  IconData iconeBotao = Icons.play_arrow;
 
   void paraCronometro() {
     timer!.cancel();
@@ -81,6 +83,7 @@ class _CronometroState extends State<Cronometro> {
 
   Widget build(BuildContext context) {
     Color cronometroColor = (segundos >= 10) ? Colors.red : Colors.green;
+    double progress = (segundos * 1000 + milisegundos) / 10000;
 
     return Scaffold(
       appBar: AppBar(
@@ -92,38 +95,99 @@ class _CronometroState extends State<Cronometro> {
         ),
         title: Text('Treino Avaliativo'),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16),
+      body: Padding(
+        padding: EdgeInsets.all(25),
+        child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: Text("Treino Avaliativo"),
-              ),
-              SizedBox(height: 25),
-              Center(
-                child: Text(
-                  "$digitoMin:$digitoSeg:$digitoMili",
-                  style: TextStyle(fontSize: 80, color: cronometroColor),
+              CustomPaint(
+                size: Size(200, 200),
+                painter: CirculoProgresso(progress),
+                child: Container(
+                  width: 250,
+                  height: 250,
+                  child: Center(
+                    child: Text(
+                      "$digitoMin:$digitoSeg:$digitoMili",
+                      style: TextStyle(fontSize: 40, color: Colors.black),
+                    ),
+                  ),
                 ),
               ),
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        (!started) ? iniciaCronometro() : paraCronometro();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: StadiumBorder(),
+                        primary: Colors.blue,
+                      ),
+                      child: Icon(Icons.play_arrow, size: 20),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        salvaVoltas();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: CircleBorder(),
+                        primary: Colors.blue,
+                      ),
+                      child:
+                          Icon(Icons.flag_sharp, color: Colors.white, size: 20),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        resetaCronometro();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: StadiumBorder(
+                          side: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                      child: Icon(Icons.exit_to_app_outlined,
+                          color: Colors.white, size: 20),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
               Container(
-                height: 300,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                height: 150,
+                margin: EdgeInsets.symmetric(vertical: 20),
                 child: ListView.builder(
                   itemCount: voltas.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.all(16),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Volta nº${index + 1}'),
+                          Text('${index + 1}a volta:'),
+                          SizedBox(
+                            width: 30,
+                          ),
                           Text('${voltas[index]}'),
                         ],
                       ),
@@ -131,48 +195,7 @@ class _CronometroState extends State<Cronometro> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        (!started) ? iniciaCronometro() : paraCronometro();
-                      },
-                      shape: const StadiumBorder(
-                        side: BorderSide(color: Colors.blue),
-                      ),
-                      child: Text((!started) ? "Iniciar" : "Pausar"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      salvaVoltas();
-                    },
-                    icon: Icon(Icons.flag_sharp),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        resetaCronometro();
-                      },
-                      shape: const StadiumBorder(
-                        side: BorderSide(color: Colors.blue),
-                      ),
-                      child: Text('Resetar'),
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(height: 15),
               BotaoPequeno(
                 hintText: 'Encerrar Treino',
                 onTap: () {
