@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 class BottomMenu extends StatelessWidget {
   final void Function(int)? onTabChange;
 
@@ -7,15 +8,14 @@ class BottomMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color cor = Color(0xFF54C5D0);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GNav(
         onTabChange: (value) => onTabChange!(value),
         mainAxisAlignment: MainAxisAlignment.center,
-        activeColor: cor,
-        color: cor,
-        tabActiveBorder: Border.all(color: cor),
+        activeColor: Colors.white,
+        color: Colors.white,
+        tabActiveBorder: Border.all(color: Colors.white),
         gap: 9,
         tabs: const [
           GButton(

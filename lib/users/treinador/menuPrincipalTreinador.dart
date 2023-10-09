@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:unasplash/componentes/drawerPadrao.dart';
 import 'package:unasplash/telas/cronometro.dart';
-import 'package:unasplash/telas/treinoAvaliativo.dart';
+import 'package:unasplash/users/treinador/treinoAvaliativo.dart';
 import 'package:unasplash/users/administrador/formCadastro.dart';
 import 'package:unasplash/users/administrador/gerenciaUsario.dart';
+import 'package:unasplash/users/treinador/analiseComparativa.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: MenuPrincipalTreinador(),
+  ));
+}
 
 class MenuPrincipalTreinador extends StatefulWidget {
   const MenuPrincipalTreinador({Key? key}) : super(key: key);
@@ -18,14 +25,17 @@ class _MenuPrincipalTreinadorState extends State<MenuPrincipalTreinador> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     TreinoAvaliativo(),
+    AnaliseComparativa(),
     FormCadastro(),
     GerenciaUser(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    Color cor = Color(0xFF54C5D0);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: cor,
         onPressed: () {
           Navigator.push(
             context,
@@ -44,7 +54,7 @@ class _MenuPrincipalTreinadorState extends State<MenuPrincipalTreinador> {
         elevation: 0,
         title: Center(
           child: Text(
-            "U N A S p l a s h",
+            "U N A S P L A S H",
             style: TextStyle(
               color: Colors.black,
             ),
@@ -71,30 +81,29 @@ class _MenuPrincipalTreinadorState extends State<MenuPrincipalTreinador> {
       ),
       drawer: DrawerPadrao(),
       body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(5),
-          child: GNav(
-            backgroundColor: Colors.white,
-            color: Colors.black,
-            activeColor: Colors.black,
-            tabBackgroundColor: Colors.grey.shade300,
-            gap: 15,
-            onTabChange: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            tabs: [
-              GButton(
-                  icon: Icons.sports_handball_rounded,
-                  text: 'Treino Avaliativo'),
-              GButton(
-                  icon: Icons.person_add_alt_1_sharp,
-                  text: 'Cadastrar Usuários'),
-              GButton(icon: Icons.search, text: 'Gerenciar Usuários'),
-            ],
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.all(5),
+            child: GNav(
+              backgroundColor: Colors.white,
+              color: Colors.black,
+              activeColor: Colors.black,
+              tabBackgroundColor: Colors.grey.shade300,
+              gap: 15,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+              tabs: [
+                GButton(icon: Icons.home, text: 'Home'),
+                GButton(icon: Icons.analytics_outlined, text: 'Análise'),
+                GButton(icon: Icons.person_add_alt_1_sharp, text: 'Cadastrar'),
+                GButton(icon: Icons.search, text: 'Gerenciar'),
+              ],
+            ),
           ),
         ),
       ),

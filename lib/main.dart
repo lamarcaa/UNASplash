@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'users/administrador/menuPrincipalAdm.dart';
-import 'package:unasplash/users/administrador/menuPrincipalAdm.dart';
 import 'package:unasplash/users/treinador/menuPrincipalTreinador.dart';
 import 'package:unasplash/users/atleta/menuPrincipalAtleta.dart';
 
@@ -37,60 +35,53 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[50],
       body: Center(
-
-        child: Column(
-
-          children: [
-
-            SizedBox(height: 50),
-            Image.asset(
-              '../imagens/logo.png',
-              width: 200,
-            ),
-
-            SizedBox(height: 10),
-            Text(
-              'Bem vindo de volta, sentimos sua falta!',
-              style: TextStyle(color: Colors.grey[700], fontSize: 16),
-            ),
-
-            SizedBox(height: 25),
-            TextFieldPadrao(
-              controller: emailUsuario,
-              hintText: 'Email',
-              obscureText: false,
-            ),
-
-
-            SizedBox(height: 10),
-            TextFieldPadrao(
-              controller: senhaUsuario,
-              hintText: 'Senha',
-              obscureText: true,
-            ),
-
-            SizedBox(height: 10),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Text(
-                  'Esqueceu sua senha? Clique aqui',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.network(
+                'https://i.imgur.com/WMIjSHr.png',
+                width: 300,
               ),
-            ]),
-
-            SizedBox(height: 25),
-            BotaoPrincipal(
-              hintText: 'Entre no Aplicativo',
-              onTap: () {
-                verificarUsuario(context, emailUsuario.text, senhaUsuario.text);
-              },
-
-            ),
-          ],
+              SizedBox(height: 10),
+              Text(
+                'Bem vindo de volta, sentimos sua falta!',
+                style: TextStyle(color: Colors.grey[700], fontSize: 16),
+              ),
+              SizedBox(height: 25),
+              TextFieldPadrao(
+                controller: emailUsuario,
+                hintText: 'Email',
+                obscureText: false,
+              ),
+              SizedBox(height: 10),
+              TextFieldPadrao(
+                controller: senhaUsuario,
+                hintText: 'Senha',
+                obscureText: true,
+              ),
+              SizedBox(height: 30),
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Text(
+                    'Esqueceu sua senha? Clique aqui',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ),
+              ]),
+              SizedBox(height: 25),
+              BotaoPrincipal(
+                hintText: 'Entre no Aplicativo',
+                onTap: () {
+                  verificarUsuario(
+                      context, emailUsuario.text, senhaUsuario.text);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

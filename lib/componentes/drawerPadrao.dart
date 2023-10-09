@@ -12,9 +12,9 @@ class DrawerPadrao extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
-              child: Image.asset(
-                '../imagens/logo.png',
-                width: 300,
+              child: Image.network(
+                'https://i.imgur.com/WMIjSHr.png',
+                width: 200,
               ),
             ),
             ListTile(

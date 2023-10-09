@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:unasplash/componentes/titulo.dart';
 import '../../helper/lista.dart';
 
 class GerenciaUser extends StatefulWidget {
   GerenciaUser();
 
+  @override
   _GerenciaUserState createState() => _GerenciaUserState();
 }
 
 class _GerenciaUserState extends State<GerenciaUser> {
-  // Chamado quando o widget é criado
+  @override
   void initState() {
-    // garente a chamada do initState
     super.initState();
-    // se n for nulo retorna a instancia pra chamar a lista
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       verificaLista();
     });
@@ -22,19 +22,19 @@ class _GerenciaUserState extends State<GerenciaUser> {
     final listaDeUsuarios = ListaUsuarios.listaDeUsuarios;
     final listaDeAtletas = ListaUsuarios.listaDeAtleta;
     final listaCombinada = [...listaDeUsuarios, ...listaDeAtletas];
-    Color cor = Color(0xFF54C5D0);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          children: [
-            if (listaCombinada.isNotEmpty)
-              Expanded(
-                child: _buildUserList(listaCombinada, cor),
-              ),
-          ],
-        ),
+      backgroundColor: Colors.grey[50],
+      body: Column(
+        children: [
+          Titulo(
+            titulo: 'GERENCIE OS USUÁRIOS',
+            subTitulo: 'Veja os usuários cadastrados no sistema!',
+          ),
+          Expanded(
+            child: _buildUserList(listaCombinada, Colors.white),
+          ),
+        ],
       ),
     );
   }
@@ -49,9 +49,8 @@ class _GerenciaUserState extends State<GerenciaUser> {
           padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
           child: Container(
             padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -70,9 +69,10 @@ class _GerenciaUserState extends State<GerenciaUser> {
                         Text(
                           item.nome,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black,
+                          ),
                         ),
                         SizedBox(height: 4),
                         Text(

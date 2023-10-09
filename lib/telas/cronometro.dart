@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/botaoPequeno.dart';
+import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/canvasCronometro.dart';
 import 'package:unasplash/telas/formTreinoAvaliativo.dart';
 
@@ -82,11 +83,14 @@ class _CronometroState extends State<Cronometro> {
   }
 
   Widget build(BuildContext context) {
-    Color cronometroColor = (segundos >= 10) ? Colors.red : Colors.green;
+    Color cronometroColor =
+        (segundos >= 10) ? Color(0xFFFF1100) : Color(0xFF02FF0A);
     double progress = (segundos * 1000 + milisegundos) / 10000;
+    Color cor = Color(0xFF54C5D0);
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 42, 42, 42),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_rounded),
           onPressed: () {
@@ -95,118 +99,146 @@ class _CronometroState extends State<Cronometro> {
         ),
         title: Text('Treino Avaliativo'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(25),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomPaint(
-                size: Size(200, 200),
-                painter: CirculoProgresso(progress),
-                child: Container(
-                  width: 250,
-                  height: 250,
-                  child: Center(
-                    child: Text(
-                      "$digitoMin:$digitoSeg:$digitoMili",
-                      style: TextStyle(fontSize: 40, color: Colors.black),
+      body: Container(
+        color: const Color.fromARGB(255, 42, 42, 42),
+        child: Padding(
+          padding: EdgeInsets.all(25),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomPaint(
+                  size: Size(200, 200),
+                  painter: CirculoProgresso(progress, segundos),
+                  child: Container(
+                    width: 250,
+                    height: 250,
+                    child: Center(
+                      child: Text(
+                        "$digitoMin:$digitoSeg:$digitoMili",
+                        style: TextStyle(fontSize: 40, color: cronometroColor),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        (!started) ? iniciaCronometro() : paraCronometro();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(),
-                        primary: Colors.blue,
-                      ),
-                      child: Icon(Icons.play_arrow, size: 20),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        salvaVoltas();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        primary: Colors.blue,
-                      ),
-                      child:
-                          Icon(Icons.flag_sharp, color: Colors.white, size: 20),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        resetaCronometro();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(
-                          side: BorderSide(color: Colors.blue),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (!started) {
+                            iniciaCronometro();
+                            setState(() {
+                              iconeBotao = Icons.pause;
+                            });
+                          } else {
+                            paraCronometro();
+                            setState(() {
+                              iconeBotao = Icons.play_arrow;
+                            });
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: StadiumBorder(),
+                          backgroundColor: Colors.black,
                         ),
+                        child: Icon(iconeBotao, size: 20),
                       ),
-                      child: Icon(Icons.exit_to_app_outlined,
-                          color: Colors.white, size: 20),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 30),
-              Container(
-                height: 150,
-                margin: EdgeInsets.symmetric(vertical: 20),
-                child: ListView.builder(
-                  itemCount: voltas.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('${index + 1}a volta:'),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text('${voltas[index]}'),
-                        ],
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      width: 50,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          salvaVoltas();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          backgroundColor: cor,
+                        ),
+                        child: Icon(Icons.loop_rounded,
+                            color: Colors.white, size: 20),
                       ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          resetaCronometro();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          backgroundColor: Colors.black,
+                        ),
+                        child:
+                            Icon(Icons.delete, color: Colors.white, size: 20),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30),
+                Container(
+                  height: 300,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  child: ListView.builder(
+                    itemCount: voltas.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${index + 1}ª volta:',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              '${voltas[index]}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 15),
+                BotaoPrincipal(
+                  hintText: 'Encerrar Treino',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FormTreinoAvaliativo()),
                     );
                   },
                 ),
-              ),
-              SizedBox(height: 15),
-              BotaoPequeno(
-                hintText: 'Encerrar Treino',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FormTreinoAvaliativo()),
-                  );
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

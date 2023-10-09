@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
+import 'package:unasplash/componentes/dropDown.dart';
 import 'package:unasplash/componentes/textfield.dart';
-import 'package:unasplash/users/administrador/cadastraAtleta.dart';
+import 'package:unasplash/componentes/titulo.dart';
 import '../../helper/usuarios.dart';
 import '../../helper/atleta.dart';
 import '../../helper/lista.dart';
 
-// lista das opções para o dropdown
 const List<String> list = <String>['Administrador', 'Treinador', 'Atleta'];
-
-void main() => runApp(FormCadastro());
 
 class FormCadastro extends StatelessWidget {
   FormCadastro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: const MyStatefulWidget(),
-      ),
-    );
+    return MyStatefulWidget();
   }
 }
 
@@ -38,58 +32,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String dropdownValue = list.first;
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Center(
+    return Container(
+      color: Colors.grey[50],
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              SizedBox(height: 10),
-              Text(
-                'Preencha o formulário e cadastre novos usuários no sistema!',
-                style: TextStyle(color: Colors.white, fontSize: 15),
+              Titulo(
+                titulo: 'CADASTRO DE USUÁRIOS',
+                subTitulo:
+                    'Preencha o formulário e cadastre novo usuários no sistema',
               ),
-              SizedBox(height: 20),
               Text(
                 'Qual tipo de usuário deseja cadastrar?',
                 style: TextStyle(color: Colors.grey[700], fontSize: 15),
               ),
               SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text(
-                            value,
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    underline: Container(),
-                    icon: Icon(Icons.arrow_drop_down),
-                  ),
-                ),
-              ),
+              DropDownPadrao(list: list, dropdownValue: 'Administrador'),
               SizedBox(height: 25),
               TextFieldPadrao(
                 controller: nomeUsuario,
@@ -115,10 +76,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           size: 25,
                           color: Colors.grey[600],
                         ),
-                        SizedBox(width: 5),
-                        Text(
-                          'A senha de primeiro acesso do usuário será enviada por email',
-                          style: TextStyle(color: Colors.grey[600]),
+                        SizedBox(width: 10),
+                        Container(
+                          width: 300,
+                          child: Text(
+                            'A senha de primeiro acesso do usuário será enviada por email',
+                            style: TextStyle(color: Colors.grey[600]),
+                            softWrap: true,
+                          ),
                         ),
                       ],
                     ),

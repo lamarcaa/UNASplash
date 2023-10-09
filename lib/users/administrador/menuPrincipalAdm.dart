@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unasplash/componentes/bottomMenu.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:unasplash/users/administrador/gerenciaUsario.dart';
 import './formCadastro.dart';
 import '../../main.dart';
@@ -13,13 +13,7 @@ class MenuPrincipalAdm extends StatefulWidget {
 
 class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  int _selectIndex = 0;
-  void navegacaoMenu(int newIndex) {
-    setState(() {
-      _selectIndex = newIndex;
-    });
-  }
-
+  int _selectedIndex = 0;
   final List<Widget> _pages = [
     GerenciaUser(),
     FormCadastro(),
@@ -27,17 +21,16 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
 
   @override
   Widget build(BuildContext context) {
-    Color cor = Color(0xFF54C5D0);
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Center(
           child: Text(
-            "U N A S p l a s h",
+            "U N A S P L A S H",
             style: TextStyle(
-              color: cor,
+              color: Colors.black,
             ),
           ),
         ),
@@ -47,7 +40,7 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
           },
           icon: Icon(
             Icons.menu,
-            color: cor,
+            color: Colors.black,
           ),
         ),
         actions: [
@@ -55,7 +48,7 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
             onPressed: () {},
             icon: Icon(
               Icons.person,
-              color: cor,
+              color: Colors.black,
             ),
           )
         ],
@@ -66,9 +59,9 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
           child: ListView(
             children: [
               DrawerHeader(
-                child: Image.asset(
-                  '../imagens/logo.png',
-                  width: 300,
+                child: Image.network(
+                  'https://i.imgur.com/WMIjSHr.png',
+                  width: 200,
                 ),
               ),
               ListTile(
@@ -88,10 +81,39 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
           ),
         ),
       ),
-      body: _pages[_selectIndex],
-      backgroundColor: Colors.grey[300],
-      bottomNavigationBar: BottomMenu(
-        onTabChange: (index) => navegacaoMenu(index),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: GNav(
+                  backgroundColor: Colors.white,
+                  color: Colors.black,
+                  activeColor: Colors.black,
+                  tabBackgroundColor: Colors.grey.shade300,
+                  gap: 15,
+                  onTabChange: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  tabs: [
+                    GButton(icon: Icons.search, text: 'Gerenciar Usuários'),
+                    GButton(
+                      icon: Icons.person_add_alt_1_sharp,
+                      text: 'Cadastrar Usuários',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

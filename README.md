@@ -1,4 +1,8 @@
-package da google:
+dependencias da google:
 dart pub add google_nav_bar
 
-limpar projeto ao dar pull: flutter pubget --no-example
+dependencias para hora e datas:
+flutter pub add flutter_localizations --sdk=flutter
+flutter pub add intl:any
+
+limpar projeto ao dar pull: flutter pub get --no-example
