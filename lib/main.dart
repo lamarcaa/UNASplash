@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
+import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/textfield.dart';
+import 'package:unasplash/componentes/titulo.dart';
+import 'package:unasplash/helper/usuarios.dart';
 import 'users/administrador/menuPrincipalAdm.dart';
 import 'package:unasplash/users/treinador/menuPrincipalTreinador.dart';
 import 'package:unasplash/users/atleta/menuPrincipalAtleta.dart';
@@ -31,6 +34,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   // controllers para o form
   final emailUsuario = TextEditingController();
   final senhaUsuario = TextEditingController();
+  final emailRecupera = TextEditingController();
+
+  get listaDeUsuarios => null;
 
   @override
   Widget build(BuildContext context) {
@@ -64,20 +70,58 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               ),
               SizedBox(height: 30),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Text(
-                    'Esqueceu sua senha? Clique aqui',
-                    style: TextStyle(color: Colors.grey[600]),
+                InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Text(
+                      'Esqueceu sua senha? Clique aqui',
+                      style: TextStyle(color: Colors.grey[600]),
+                    ),
                   ),
+                  onTap: () {
+                    print("clicou");
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: 300,
+                          color: Colors.white,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Titulo(
+                                    titulo: 'Esqueceu sua senha?',
+                                    subTitulo: 'Digite seu email:'),
+                                TextFieldPadrao(
+                                  hintText: 'Email',
+                                  obscureText: false,
+                                  controller: emailRecupera,
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                BotaoSecundario(
+                                  hintText: 'Recuperar',
+                                  onTap: () {
+                                    recuperarSenha(emailRecupera.text);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ]),
               SizedBox(height: 25),
               BotaoPrincipal(
                 hintText: 'Entre no Aplicativo',
                 onTap: () {
-                  verificarUsuario(
-                      context, emailUsuario.text, senhaUsuario.text);
+                  verificarUsuario(emailUsuario.text, senhaUsuario.text);
+                  usuarioLista(emailUsuario.text);
                 },
               ),
             ],
@@ -87,7 +131,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 
-  void verificarUsuario(BuildContext context, String email, String senha) {
+  void verificarUsuario(String email, String senha) {
     if (email == '123' && senha == '123') {
       redirecionaMenu(context, 'administrador');
     } else if (email == '456' && senha == '456') {
@@ -109,6 +153,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
   }
 
+  void usuarioLista(String email) {
+    for (Usuario usuario in listaDeUsuarios) {
+      if (usuario.email == email) {
+        print('Encontrou');
+      }
+    }
+  }
+
   void redirecionaMenu(BuildContext context, String tipoUsuario) {
     if (tipoUsuario == 'administrador') {
       Navigator.push(
@@ -126,5 +178,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         MaterialPageRoute(builder: (context) => MenuPrincipalAtleta()),
       );
     }
+  }
+
+  void recuperarSenha(String emailRecupera) {
+    if (emailRecupera.isEmpty) {
+      print('vazio');
+    } else {}
   }
 }

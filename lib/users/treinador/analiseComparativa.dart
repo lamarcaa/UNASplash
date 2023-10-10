@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:unasplash/componentes/btnFiltro.dart';
 import 'package:unasplash/componentes/cardTreinoAvaliativo.dart';
 import 'package:unasplash/componentes/titulo.dart';
 
-enum ExerciseFilter { Craw }
+enum ExerciseFilter { Craw, Costas, Peito, Borboleta, Medley }
 
 void main() {
   runApp(MaterialApp(
@@ -42,23 +43,188 @@ class _AnaliseComparativaState extends State<AnaliseComparativa> {
               onSubmitted: buscarAtleta,
             ),
           ),
+          Text(
+            'Modalidades',
+            style: TextStyle(
+              color: Colors.grey[500],
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
           Wrap(
             children: [
-              FilterChip(
-                label: Text('Craw'),
-                selected: filters.contains(ExerciseFilter.Craw),
-                onSelected: (selected) {
-                  setState(() {
-                    if (selected) {
-                      filters.add(ExerciseFilter.Craw);
-                    } else {
-                      filters.remove(ExerciseFilter.Craw);
-                    }
-                  });
-                },
+              BtnFiltro(
+                text: 'Craw',
               ),
-              // Adicione mais filtros aqui
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Costas',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Peito',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Borboleta',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Medley',
+              ),
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Provas',
+            style: TextStyle(
+              color: Colors.grey[500],
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            children: [
+              BtnFiltro(
+                text: '50m',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: '100m',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: '200m',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: '700m',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: '800m',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: '1500m',
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Sexo',
+            style: TextStyle(
+              color: Colors.grey[500],
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            children: [
+              BtnFiltro(
+                text: 'Masculino',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Feminino',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Outro',
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Período',
+            style: TextStyle(
+              color: Colors.grey[500],
+              fontSize: 13,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Wrap(
+            children: [
+              BtnFiltro(
+                text: 'Jan - Fev',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Mar - Abri',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Mai - Jun',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Jul - Ago',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              BtnFiltro(
+                text: 'Set - Out',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              BtnFiltro(
+                text: 'Nov - Dez',
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
           ),
           CardTreino(
             nomeUsuario: 'Gabriel Lamarca Galdino da Silva',
