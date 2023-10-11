@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/dataPicker.dart';
@@ -112,10 +114,10 @@ class _FormTreinoAvaliativoState extends State<FormTreinoAvaliativo> {
               BotaoPrincipal(
                 hintText: 'Cadastrar Treino Avaliativo',
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content:
-                          Text('Treino Avaliativo Cadastrado com sucesso!'),
+                  showTopSnackBar(
+                    Overlay.of(context),
+                    CustomSnackBar.success(
+                      message: "Treino avaliativo cadastrado com sucesso!",
                     ),
                   );
                   Navigator.push(

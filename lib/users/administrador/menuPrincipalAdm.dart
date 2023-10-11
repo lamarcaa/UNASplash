@@ -103,10 +103,10 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
                     });
                   },
                   tabs: [
-                    GButton(icon: Icons.search, text: 'Gerenciar Usuários'),
+                    GButton(icon: Icons.home, text: 'Home'),
                     GButton(
                       icon: Icons.person_add_alt_1_sharp,
-                      text: 'Cadastrar Usuários',
+                      text: 'Cadastrar',
                     ),
                   ],
                 ),

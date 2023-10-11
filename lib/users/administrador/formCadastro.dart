@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/dropDown.dart';
@@ -116,9 +118,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   void trataCampos(String tipoUsuario) {
     if (nomeUsuario.text.isEmpty || emailUsuario.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Preencha todos os campos'),
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.info(
+          message: "Preencha todos os campos!",
         ),
       );
     } else {
@@ -138,10 +141,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void cadastrarAtleta() {
     Atleta novoAtleta =
         Atleta(nomeUsuario.text, emailUsuario.text, dropdownValue);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Atleta cadastrado com sucesso'),
+    showTopSnackBar(
+      Overlay.of(context),
+      CustomSnackBar.success(
+        message: "Atleta cadastrado com sucesso!",
       ),
     );
 
@@ -157,11 +160,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Usuario novoUsuario =
         Usuario(nomeUsuario.text, emailUsuario.text, dropdownValue);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Usuário cadastrado com sucesso'),
-      ),
-    );
+    showTopSnackBar(
+    Overlay.of(context),
+    CustomSnackBar.success(
+      message:
+          "Usuário cadastrado com sucesso!",
+    ),
+);
 
     ListaUsuarios.listaDeUsuarios.add(novoUsuario);
 

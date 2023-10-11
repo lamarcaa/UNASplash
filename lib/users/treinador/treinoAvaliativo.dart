@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unasplash/componentes/cardTreinoAvaliativo.dart';
 import 'package:unasplash/componentes/titulo.dart';
+import 'package:unasplash/telas/infoTreinoAvaliativo.dart';
 
 class TreinoAvaliativo extends StatelessWidget {
   const TreinoAvaliativo({super.key});
@@ -16,10 +17,19 @@ class TreinoAvaliativo extends StatelessWidget {
               titulo: 'TREINO AVALIATIVO',
               subTitulo: 'Veja detalhes do treino avaliativo dos atletas!',
             ),
-            CardTreino(
-              nomeUsuario: 'Gabriel Lamarca Galdino da Silva',
-              dataTreino: 'Realizado em: 03/10 - Quarta Feira',
-              Modalidade: 'Craw',
+            InkWell(
+              child: CardTreino(
+                nomeUsuario: 'Gabriel Lamarca Galdino da Silva',
+                dataTreino: 'Realizado em: 03/10 - Quarta Feira',
+                Modalidade: 'Craw',
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => InfoTreinoAvaliativo()),
+                );
+              },
             ),
             CardTreino(
               nomeUsuario: 'Ana Maria',
