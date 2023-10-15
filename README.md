@@ -1,10 +1,10 @@
-UNASPLASH - Natação UNAERP
+UNASPLASH - Natação UNAERP <br>
 
 Desafio 7a etapa de ENG Software
 
 ============================= GRUPO =================================
 
-Gabriel Lamarca Galdino da Silva - 836666
+Gabriel Lamarca Galdino da Silva - 836666 <br>
 Guilherme Galvão - 835862
 
 =====================================================================
@@ -14,31 +14,31 @@ Guilherme Galvão - 835862
 
 apenas rodar os comandos apaixo no cmd:
 
--=- dependencias da google:
-comando: dart pub add google_nav_bar
+-=- dependencias da google: <br>
+comando: dart pub add google_nav_bar <br>
 
--=- dependencias para hora e datas:
-comando: flutter pub add flutter_localizations --sdk=flutter
-comando: flutter pub add intl:any
+-=- dependencias para hora e datas: <br>
+comando: flutter pub add flutter_localizations --sdk=flutter <br>
+comando: flutter pub add intl:any <br>
 
--=- dependencia do biblioteca do snackbar no topo:
-comando: flutter pub add top_snackbar_flutter
+-=- dependencia do biblioteca do snackbar no topo: <br>
+comando: flutter pub add top_snackbar_flutter 
 
 
 ======================================================================
 
 ============= Usuários e senhas para entrar no aplicativo ============
 
- -=- Administrador:
-  usuário: 123
-  senha:   123
+ -=- Administrador: <br>
+  usuário: 123 <br>
+  senha:   123 <br>
 
- -=- Treinador:
-  usuário: 456
-  senha:   456
+ -=- Treinador: <br>
+  usuário: 456 <br>
+  senha:   456 <br>
 
- -=- Atleta:
-  usuário: 789
+ -=- Atleta: <br>
+  usuário: 789 <br>
   senha:   789
 
 
@@ -47,20 +47,20 @@ comando: flutter pub add top_snackbar_flutter
 
 ================= anotações para mim, favor ignorar ==================
 
-limpar projeto ao dar pull: flutter pub get --no-example
+limpar projeto ao dar pull: flutter pub get --no-example <br>
 
-buildar no celular pelo wifi:
+buildar no celular pelo wifi: <br>
 
-adb connect [ip]:[porta]
+adb connect [ip]:[porta] <br>
 
-caminho adb: C:\Users\glama\AppData\Local\Android\Sdk\platform-tools
+caminho adb: C:\Users\glama\AppData\Local\Android\Sdk\platform-tools <br>
 
-funcionar o run without debugging em qualquer tela: 
+funcionar o run without debugging em qualquer tela:  <br>
 
-void main() {
-  runApp(MaterialApp(
-    home: [nome da classe](),
-  ));
-}
+void main() { <br>
+  runApp(MaterialApp( <br>
+    home: [nome da classe](), <br>
+  )); <br>
+} <br>
 
 ======================================================================
