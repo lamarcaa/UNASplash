@@ -162,7 +162,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   void recuperaSenha(String email, BuildContext context) {
-    print('====== Lista de Usuários:  ===== ');
+    print('====== Lista de Usuários:  ====== ');
     for (var usuario in ListaUsuarios.listaDeUsuarios) {
       print('================================');
       print('Nome do usuário: ' + usuario.nome);
