@@ -148,14 +148,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       showTopSnackBar(
         Overlay.of(context),
         CustomSnackBar.info(
-          message: "Digite as credênciais para logar",
+          message: "Digite as credênciais para logar!",
         ),
       );
     } else {
       showTopSnackBar(
         Overlay.of(context),
         CustomSnackBar.error(
-          message: "Email ou senha inválidos, tente novamente",
+          message: "Email ou senha inválidos, tente novamente!",
         ),
       );
     }
