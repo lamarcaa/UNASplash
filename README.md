@@ -1,6 +1,6 @@
 UNASPLASH - Natação UNAERP <br>
 
-Desafio 7a etapa de ENG Software
+Desafio 6a etapa de ENG Software
 
 ============================= GRUPO =================================
 
