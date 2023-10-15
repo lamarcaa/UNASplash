@@ -18,14 +18,14 @@ class PerfilTreinador extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 56, 56, 56),
-        title: Text('Treinador'),
+        backgroundColor: const Color.fromARGB(255, 42, 42, 42),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_rounded),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
+        title: Text('Treinador'),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -66,7 +66,7 @@ class PerfilTreinador extends StatelessWidget {
                     height: 40,
                   ),
                   BotaoSecundario(
-                    hintText: 'Editar as informações',
+                    text: 'Editar as informações',
                     onTap: () {
                       showModalBottomSheet<void>(
                         context: context,
@@ -85,7 +85,7 @@ class PerfilTreinador extends StatelessWidget {
                                           titulo: 'Edite as informações',
                                           subTitulo: ''),
                                       TextFieldPadrao(
-                                        hintText: 'Nome',
+                                        text: 'Nome',
                                         obscureText: false,
                                         // controller: emailRecupera,
                                       ),
@@ -93,14 +93,14 @@ class PerfilTreinador extends StatelessWidget {
                                         height: 20,
                                       ),
                                       TextFieldPadrao(
-                                        hintText: 'Email',
+                                        text: 'Email',
                                         obscureText: false,
                                         // controller: emailRecupera,
                                       ),
                                       SizedBox(
                                         height: 20,
                                       ),
-                                      BotaoPrincipal(hintText: 'Salvar'),
+                                      BotaoPrincipal(text: 'Salvar'),
                                     ],
                                   ),
                                 ],

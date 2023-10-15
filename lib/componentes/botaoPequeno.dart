@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BotaoPequeno extends StatelessWidget {
-  final String hintText;
+  final String text;
   final Function()? onTap;
 
   const BotaoPequeno({
     super.key,
-    required this.hintText,
+    required this.text,
     this.onTap,
   });
 
@@ -24,7 +24,7 @@ class BotaoPequeno extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            hintText,
+            text,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.normal,

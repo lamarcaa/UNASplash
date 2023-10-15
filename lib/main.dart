@@ -6,9 +6,9 @@ import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
 import 'package:unasplash/helper/lista.dart';
-import 'package:unasplash/users/administrador/menuPrincipalAdm.dart';
-import 'package:unasplash/users/atleta/menuPrincipalAtleta.dart';
-import 'package:unasplash/users/treinador/menuPrincipalTreinador.dart';
+import 'package:unasplash/menuPrincipal/administrador/menuPrincipalAdm.dart';
+import 'package:unasplash/menuPrincipal/atleta/menuPrincipalAtleta.dart';
+import 'package:unasplash/menuPrincipal/treinador/menuPrincipalTreinador.dart';
 
 void main() => runApp(const MyApp());
 
@@ -61,13 +61,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               SizedBox(height: 25),
               TextFieldPadrao(
                 controller: emailUsuario,
-                hintText: 'Email',
+                text: 'Email',
                 obscureText: false,
               ),
               SizedBox(height: 10),
               TextFieldPadrao(
                 controller: senhaUsuario,
-                hintText: 'Senha',
+                text: 'Senha',
                 obscureText: true,
               ),
               SizedBox(height: 30),
@@ -98,7 +98,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                         titulo: 'Esqueceu sua senha?',
                                         subTitulo: 'Digite seu email:'),
                                     TextFieldPadrao(
-                                      hintText: 'Email',
+                                      text: 'Email',
                                       obscureText: false,
                                       controller: emailRecupera,
                                     ),
@@ -106,7 +106,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                       height: 10,
                                     ),
                                     BotaoSecundario(
-                                      hintText: 'Recuperar',
+                                      text: 'Recuperar',
                                       onTap: () {
                                         recuperaSenha(
                                             emailRecupera.text, context);
@@ -125,7 +125,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               ]),
               SizedBox(height: 25),
               BotaoPrincipal(
-                hintText: 'Entre no Aplicativo',
+                text: 'Entre no Aplicativo',
                 onTap: () {
                   verificarUsuario(emailUsuario.text, senhaUsuario.text);
                 },
@@ -162,11 +162,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   void recuperaSenha(String email, BuildContext context) {
-    print('Lista de Usuários:');
+    print('====== Lista de Usuários:  ===== ');
     for (var usuario in ListaUsuarios.listaDeUsuarios) {
-      print(usuario.nome);
-      print(usuario.email);
-      print(usuario.senha);
+      print('================================');
+      print('Nome do usuário: ' + usuario.nome);
+      print('Email do usuário: ' + usuario.email);
+      print('Tipo do usuário: ' + usuario.tipoUsuario);
+      print('Senha do usuário: ' + usuario.senha);
+      print('================================');
     }
 
     for (var usuario in ListaUsuarios.listaDeUsuarios) {
@@ -181,27 +184,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         );
       } else if (email != usuario.email) {
-        showTopSnackBar(
-          Overlay.of(context),
-          CustomSnackBar.info(
-            message: "Email não encontrado",
-          ),
-        );
-      }
-    }
-
-    print('Lista de Atletas:');
-    for (var atleta in ListaUsuarios.listaDeAtleta) {
-      print(atleta.nome);
-      print(atleta.email);
-      print(atleta.senha);
-    }
-
-    for (var atleta in ListaUsuarios.listaDeAtleta) {
-      if (atleta.email == email) {
-        print('Email encontrado');
-        confirmarSenha();
-      } else {
         showTopSnackBar(
           Overlay.of(context),
           CustomSnackBar.info(
@@ -228,19 +210,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     subTitulo: 'Digite a nova senha:',
                   ),
                   TextFieldPadrao(
-                    hintText: 'Nova senha',
+                    text: 'Nova senha',
                     obscureText: false,
                     controller: novaSenha,
                   ),
                   SizedBox(height: 10),
                   TextFieldPadrao(
-                    hintText: 'Confirmar senha',
+                    text: 'Confirmar senha',
                     obscureText: false,
                     controller: confNovaSenha,
                   ),
                   SizedBox(height: 10),
                   BotaoPrincipal(
-                    hintText: 'Cadastrar nova senha',
+                    text: 'Cadastrar nova senha',
                     onTap: () {
                       cadastrarNovaSenha(novaSenha.text, confNovaSenha.text);
                     },
@@ -262,38 +244,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       for (var usuario in ListaUsuarios.listaDeUsuarios) {
         if (usuario.email == emailRecupera.text) {
           usuario.senha = novaSenha;
-          showTopSnackBar(
-            Overlay.of(context),
-            CustomSnackBar.success(
-              message: "Senha alterada com sucesso!",
-            ),
-          );
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MyApp()),
-          );
-        }
-      }
-    } else if (novaSenha.isEmpty || confNovaSenha.isEmpty) {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "Digite as senhas",
-        ),
-      );
-    } else {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "As senhas não coincidem",
-        ),
-      );
-    }
-
-    if (novaSenha == confNovaSenha) {
-      for (var atleta in ListaUsuarios.listaDeAtleta) {
-        if (atleta.email == emailRecupera.text) {
-          atleta.senha = novaSenha;
           showTopSnackBar(
             Overlay.of(context),
             CustomSnackBar.success(

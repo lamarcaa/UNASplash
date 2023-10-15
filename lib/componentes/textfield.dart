@@ -1,29 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldPadrao extends StatelessWidget {
   final controller;
-  final String hintText;
+  final String text;
   final bool obscureText;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatter;
+  final int? maxLength;
 
-  const TextFieldPadrao(
-      {super.key,
-        this.controller,
-        required this.hintText,
-        required this.obscureText});
+  const TextFieldPadrao({
+    Key? key,
+    this.controller,
+    required this.text,
+    required this.obscureText,
+    this.keyboardType,
+    this.inputFormatter,
+    this.maxLength,
+  });
 
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType,
+        inputFormatters: inputFormatter,
+        maxLength: maxLength, // Adicione o maxLength ao TextField
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
           fillColor: Colors.grey.shade200,
           filled: true,
-          hintText: hintText,
+          hintText: text,
           hintStyle: TextStyle(color: Colors.grey[500]),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade400),

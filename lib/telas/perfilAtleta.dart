@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
 import 'package:unasplash/componentes/labelCard.dart';
-import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
 
 void main() {
@@ -18,14 +16,14 @@ class PerfilAtleta extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        title: const Text('Atleta'),
+        backgroundColor: const Color.fromARGB(255, 42, 42, 42),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_rounded),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
+        title: Text('Atleta'),
       ),
       body: const SingleChildScrollView(
         child: Center(
@@ -152,7 +150,7 @@ class PerfilAtleta extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  BotaoSecundario(hintText: 'Editar'),
+                  BotaoSecundario(text: 'Editar'),
                 ],
               ),
             ),

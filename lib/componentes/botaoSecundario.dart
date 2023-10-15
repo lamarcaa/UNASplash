@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BotaoSecundario extends StatelessWidget {
-  final String hintText;
+  final String text;
   final Function()? onTap;
 
   const BotaoSecundario({
     super.key,
-    required this.hintText,
+    required this.text,
     this.onTap,
   });
 
@@ -28,7 +28,7 @@ class BotaoSecundario extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            hintText,
+            text,
             style: TextStyle(
               color: cor,
               fontWeight: FontWeight.bold,

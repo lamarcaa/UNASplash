@@ -15,14 +15,14 @@ class InfoTreinoAvaliativo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 56, 56, 56),
-        title: const Text('Treino Avaliativo'),
+        backgroundColor: const Color.fromARGB(255, 42, 42, 42),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_rounded),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
+        title: Text('Treino Avaliativo'),
       ),
       body: const SingleChildScrollView(
         child: Center(
@@ -56,9 +56,18 @@ class InfoTreinoAvaliativo extends StatelessWidget {
                   LabelCard(
                       info: '4a Volta - 08:01:31', icone: Icons.loop_rounded),
                   LabelCard(
-                      info: '1a Volta - 10:15:04', icone: Icons.loop_rounded),
+                      info: '5a Volta - 10:15:04', icone: Icons.loop_rounded),
                   LabelCard(
-                      info: '2a Volta - 12:00:01', icone: Icons.loop_rounded),
+                      info: '6a Volta - 12:00:01', icone: Icons.loop_rounded),
+                  LabelCard(
+                      info: 'Média - 07:22:04',
+                      icone: Icons.emoji_events_outlined),
+                  LabelCard(
+                      info: 'Abaixo da Média - 02:21:24',
+                      icone: Icons.emoji_events_rounded),
+                  LabelCard(
+                      info: 'Acima da Média - 10:15:04, 12:00:01',
+                      icone: Icons.emoji_events_rounded),
                   Titulo(
                       titulo: 'Informações',
                       subTitulo: 'Informações registradas'),
@@ -76,9 +85,9 @@ class InfoTreinoAvaliativo extends StatelessWidget {
                     height: 30,
                   ),
                   LabelCard(
-                      info:
-                          'Responsável pela Aplicação: Sérgio Antônio (Treinador)',
-                      icone: Icons.timer),
+                      info: 'Responsável pela Aplicação: ', icone: Icons.timer),
+                  LabelCard(
+                      info: 'Sérgio Antônio (Treinador)', icone: Icons.timer),
                 ],
               ),
             ),

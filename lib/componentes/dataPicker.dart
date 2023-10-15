@@ -5,7 +5,7 @@ class DataPickerPadrao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BotaoSecundario(
-      hintText: 'Selecione a data',
+      text: 'Selecione a data',
       onTap: () {
         _selectDate(context);
       },

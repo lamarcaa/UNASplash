@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:unasplash/users/administrador/gerenciaUsario.dart';
-import './formCadastro.dart';
-import '../../main.dart';
+import 'package:unasplash/main.dart';
+import 'package:unasplash/telas/formularios/cadastroInicialAtleta.dart';
+import 'package:unasplash/telas/gerenciaUsario.dart';
+import '../../telas/formularios/cadastraUsuarios.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: MenuPrincipalAdm(),
+  ));
+}
 
 class MenuPrincipalAdm extends StatefulWidget {
   const MenuPrincipalAdm({super.key});
@@ -17,6 +24,7 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
   final List<Widget> _pages = [
     GerenciaUser(),
     FormCadastro(),
+    cadastroInicialAtleta()
   ];
 
   @override
@@ -25,61 +33,47 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         elevation: 0,
-        title: Center(
-          child: Text(
-            "U N A S P L A S H",
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            scaffoldKey.currentState?.openDrawer();
-          },
-          icon: Icon(
-            Icons.menu,
-            color: Colors.black,
+        title: Text(
+          "U N A S P L A S H",
+          style: TextStyle(
+            color: Color.fromARGB(255, 42, 42, 42),
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
             icon: Icon(
-              Icons.person,
+              Icons.people_alt_rounded,
               color: Colors.black,
             ),
-          )
-        ],
-      ),
-      drawer: Drawer(
-        child: Container(
-          color: Colors.white,
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Image.network(
-                  'https://i.imgur.com/WMIjSHr.png',
-                  width: 200,
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: Text(
-                  'Sair',
-                  style: TextStyle(fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                  );
-                },
-              ),
-            ],
+            onPressed: () {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(400, 50, 0, 0),
+                items: [
+                  PopupMenuItem(
+                    child: ListTile(
+                      title: Text('Usuário: Administrador'),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    child: ListTile(
+                      leading: Icon(Icons.exit_to_app),
+                      title: Text('Sair'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
-        ),
+        ],
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
@@ -103,10 +97,14 @@ class _MenuPrincipalAdmState extends State<MenuPrincipalAdm> {
                     });
                   },
                   tabs: [
-                    GButton(icon: Icons.home, text: 'Home'),
+                    GButton(icon: Icons.search, text: 'Gerênciar Cadastros'),
                     GButton(
                       icon: Icons.person_add_alt_1_sharp,
-                      text: 'Cadastrar',
+                      text: 'Cadastrar Usuários',
+                    ),
+                    GButton(
+                      icon: Icons.pool_rounded,
+                      text: 'Cadastrar Atletas',
                     ),
                   ],
                 ),

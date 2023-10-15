@@ -27,7 +27,7 @@ class CardTreino extends StatelessWidget {
           Row(
             children: [
               Icon(
-                Icons.auto_graph_rounded,
+                Icons.bar_chart_rounded,
                 size: 50,
               ),
               SizedBox(width: 10),
@@ -58,6 +58,5 @@ class CardTreino extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

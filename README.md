@@ -1,18 +1,57 @@
-dependencias da google:
-dart pub add google_nav_bar
+UNASPLASH - Natação UNAERP
 
-dependencias para hora e datas:
-flutter pub add flutter_localizations --sdk=flutter
-flutter pub add intl:any
+Desafio 7a etapa de ENG Software
 
-dependencia do snackbar no topo:
-flutter pub add top_snackbar_flutter
+============================= GRUPO =================================
+
+Gabriel Lamarca Galdino da Silva - 836666
+Guilherme Galvão - 835862
+
+=====================================================================
+
+
+============= Dependencias necessárias para a compilação ============
+
+apenas rodar os comandos apaixo no cmd:
+
+-=- dependencias da google:
+comando: dart pub add google_nav_bar
+
+-=- dependencias para hora e datas:
+comando: flutter pub add flutter_localizations --sdk=flutter
+comando: flutter pub add intl:any
+
+-=- dependencia do biblioteca do snackbar no topo:
+comando: flutter pub add top_snackbar_flutter
+
+
+======================================================================
+
+============= Usuários e senhas para entrar no aplicativo ============
+
+ -=- Administrador:
+  usuário: 123
+  senha:   123
+
+ -=- Treinador:
+  usuário: 456
+  senha:   456
+
+ -=- Atleta:
+  usuário: 789
+  senha:   789
+
+
+======================================================================
+
+
+================= anotações para mim, favor ignorar ==================
 
 limpar projeto ao dar pull: flutter pub get --no-example
 
 buildar no celular pelo wifi:
 
-adb tcpip [ip], adb connect ip:[porta]
+adb connect [ip]:[porta]
 
 caminho adb: C:\Users\glama\AppData\Local\Android\Sdk\platform-tools
 
@@ -23,3 +62,5 @@ void main() {
     home: [nome da classe](),
   ));
 }
+
+======================================================================
