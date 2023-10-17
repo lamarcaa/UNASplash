@@ -6,8 +6,8 @@ class Atleta {
   final String dtnNascimento;
   final String naturalidade;
   final String nacionalidade;
-  final int RG;
-  final int CPF;
+  final String RG;
+  final String CPF;
   final String sexo;
   final String rua;
   final String bairro;
@@ -18,7 +18,7 @@ class Atleta {
   final List<String> estilos;
   final List<String> provas;
   final bool alergiaMedicamentos;
-  final List<String> telefonesOpcionais;
+  final List<int> telefonesOpcionais;
   // Atributos opcionais
   final String? nomeMae;
   final String? nomePai;
@@ -33,27 +33,27 @@ class Atleta {
     this.nome,
     this.email,
     this.tipoUsuario, {
-    this.dtnNascimento,
-    this.naturalidade,
-    this.nacionalidade,
-    this.RG,
-    this.CPF,
-    this.sexo,
-    this.rua,
-    this.bairro,
-    this.numero,
-    this.cep,
-    this.telefonePessoal,
-    this.telefoneEmergencial,
-    this.alergiaMedicamentos = false,
-    this.telefonesOpcionais,
+    required this.dtnNascimento,
+    required this.naturalidade,
+    required this.nacionalidade,
+    required this.RG,
+    required this.CPF,
+    required this.sexo,
+    required this.rua,
+    required this.bairro,
+    required this.numero,
+    required this.cep,
+    required this.telefonePessoal,
+    required this.telefoneEmergencial,
+    required this.alergiaMedicamentos,
+    required this.telefonesOpcionais,
     this.nomeMae,
     this.nomePai,
     this.clubeOrigem,
     this.localTrabalho,
     this.convenioMedico,
     this.medicamentos,
-    this.estilos,
-    this.provas,
+    required this.estilos,
+    required this.provas,
   });
 }
