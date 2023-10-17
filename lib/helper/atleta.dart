@@ -3,23 +3,22 @@ class Atleta {
   final String nome;
   final String email;
   final String tipoUsuario;
-
-  final String? dtnNascimento;
-  final String? naturalidade;
-  final String? nacionalidade;
-  final int? RG;
-  final int? CPF;
-  final String? sexo;
-  final String? rua;
-  final String? bairro;
-  final int? numero;
-  final int? cep;
-  final int? telefonePessoal;
-  final int? telefoneEmergencial;
-  final List<String>? estilos;
-  final List<String>? provas;
+  final String dtnNascimento;
+  final String naturalidade;
+  final String nacionalidade;
+  final int RG;
+  final int CPF;
+  final String sexo;
+  final String rua;
+  final String bairro;
+  final int numero;
+  final int cep;
+  final int telefonePessoal;
+  final int telefoneEmergencial;
+  final List<String> estilos;
+  final List<String> provas;
   final bool alergiaMedicamentos;
-  final List<String>? telefonesOpcionais;
+  final List<String> telefonesOpcionais;
   // Atributos opcionais
   final String? nomeMae;
   final String? nomePai;
