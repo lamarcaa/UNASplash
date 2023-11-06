@@ -7,6 +7,8 @@ import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
 import 'package:unasplash/helper/lista.dart';
 import 'package:unasplash/helper/usuarios.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -137,20 +139,58 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
   }
 
-  void cadastrarUsuario() {
-    Usuario novoUsuario =
-        Usuario(nomeUsuario.text, emailUsuario.text, dropdownValue);
+  void cadastrarUsuario() async {
+    String nome = nomeUsuario.text;
+    String email = emailUsuario.text;
+    String tipo = dropdownValue; 
+    String senha =
+        "senhaPadrao123"; 
 
-    ListaUsuarios.listaDeUsuarios.add(novoUsuario);
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: senha,
+      );
 
-    showTopSnackBar(
-      Overlay.of(context),
-      CustomSnackBar.success(
-        message: "Usuário cadastrado com sucesso!",
-      ),
-    );
+      if (userCredential.user != null) {
+        await FirebaseFirestore.instance
+            .collection('usuarios')
+            .doc(userCredential.user!.uid)
+            .set({
+          'nome': nome,
+          'email': email,
+          'senha': senha,
+          'tipoUsuario': tipo,
+        });
 
-    print(
-        'Adicionado: ${nomeUsuario.text}, ${emailUsuario.text}, $dropdownValue na lista');
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.success(
+            message: "Usuário cadastrado com sucesso!",
+          ),
+        );
+
+        print('Usuário $email cadastrado com sucesso!');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: "A senha fornecida é muito fraca.",
+          ),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: "O email fornecido já está em uso.",
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

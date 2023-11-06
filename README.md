@@ -24,6 +24,20 @@ comando: flutter pub add intl:any <br>
 -=- dependencia do biblioteca do snackbar no topo: <br>
 comando: flutter pub add top_snackbar_flutter 
 
+-=- dependencia do firebase: <br>
+comando: flutter pub add firebase_core
+
+-=- dependencia do firebase * node necessário: <br>
+comando: npm install -g firebase-tools
+flutterfire configure
+-=- dependencia do firebase<br>
+comando: dart pub global activate flutterfire_cli
+
+flutter pub add firebase_auth 
+
+
+
+
 
 ======================================================================
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450481104774",
+    "project_id": "unasplash-38796",
+    "storage_bucket": "unasplash-38796.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450481104774:android:daa398f9e29242d5c3ee07",
+        "android_client_info": {
+          "package_name": "com.example.unasplash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Xl6r0FdA8WLeex13tVmr1B0dcRgrkx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

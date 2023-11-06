@@ -9,8 +9,16 @@ import 'package:unasplash/helper/lista.dart';
 import 'package:unasplash/menuPrincipal/administrador/menuPrincipalAdm.dart';
 import 'package:unasplash/menuPrincipal/atleta/menuPrincipalAtleta.dart';
 import 'package:unasplash/menuPrincipal/treinador/menuPrincipalTreinador.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -33,7 +41,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  // controllers para o form
+  // controllers
   final emailUsuario = TextEditingController();
   final senhaUsuario = TextEditingController();
   final emailRecupera = TextEditingController();
@@ -56,7 +64,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               SizedBox(height: 10),
               Text(
                 'Bem vindo de volta, sentimos sua falta!',
-                style: TextStyle(color: Colors.grey[700], fontSize: 16),
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 129, 90, 90),
+                    fontSize: 16),
               ),
               SizedBox(height: 25),
               TextFieldPadrao(
