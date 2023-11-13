@@ -14,23 +14,26 @@ class Titulo extends StatelessWidget {
           Text(
             titulo,
             style: TextStyle(
-              color: Colors.grey[500],
+              color: Color.fromARGB(189, 0, 0, 0),
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
+              fontStyle: FontStyle.normal,
             ),
+            textAlign: TextAlign.left,
           ),
-          SizedBox(height: 10),
+          SizedBox(
+            height: 10,
+          ),
           Text(
             subTitulo,
             style: TextStyle(
-              color: Colors.grey[500],
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
+              color: Color.fromARGB(135, 0, 0, 0),
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal,
             ),
+            textAlign: TextAlign.left,
           ),
-          SizedBox(height: 20),
         ],
       ),
     );

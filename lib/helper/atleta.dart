@@ -6,8 +6,8 @@ class Atleta {
   final String dtnNascimento;
   final String naturalidade;
   final String nacionalidade;
-  final String RG;
-  final String CPF;
+  final int RG;
+  final int CPF;
   final String sexo;
   final String rua;
   final String bairro;
@@ -18,7 +18,7 @@ class Atleta {
   final List<String> estilos;
   final List<String> provas;
   final bool alergiaMedicamentos;
-  final List<int> telefonesOpcionais;
+  final List<String> telefonesOpcionais;
   // Atributos opcionais
   final String? nomeMae;
   final String? nomePai;
@@ -45,7 +45,7 @@ class Atleta {
     required this.cep,
     required this.telefonePessoal,
     required this.telefoneEmergencial,
-    required this.alergiaMedicamentos,
+    this.alergiaMedicamentos = false,
     required this.telefonesOpcionais,
     this.nomeMae,
     this.nomePai,

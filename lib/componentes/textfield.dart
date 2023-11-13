@@ -28,7 +28,7 @@ class TextFieldPadrao extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         inputFormatters: inputFormatter,
-        maxLength: maxLength, 
+        maxLength: maxLength,
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),

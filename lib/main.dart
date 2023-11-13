@@ -3,20 +3,17 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/botaoSecundario.dart';
+import 'package:unasplash/componentes/botaoVazado.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
 import 'package:unasplash/helper/lista.dart';
-import 'package:unasplash/menuPrincipal/administrador/menuPrincipalAdm.dart';
+import 'package:unasplash/telas/menuPrincipalAdm.dart';
 import 'package:unasplash/menuPrincipal/atleta/menuPrincipalAtleta.dart';
 import 'package:unasplash/menuPrincipal/treinador/menuPrincipalTreinador.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+void main() {
   runApp(const MyApp());
 }
 
@@ -55,32 +52,56 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: Center(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.network(
                 'https://i.imgur.com/WMIjSHr.png',
                 width: 300,
               ),
-              SizedBox(height: 10),
-              Text(
-                'Bem vindo de volta, sentimos sua falta!',
-                style: TextStyle(
-                    color: const Color.fromARGB(255, 129, 90, 90),
-                    fontSize: 16),
+              SizedBox(height: 20),
+              BotaoPrincipal(
+                text: 'Entre no Aplicativo',
+                onTap: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 30),
+                            Text(
+                              'Bem vindo de volta, sentimos sua falta!',
+                              style: TextStyle(
+                                  color: const Color.fromARGB(255, 129, 90, 90),
+                                  fontSize: 16),
+                            ),
+                            SizedBox(height: 25),
+                            TextFieldPadrao(
+                              controller: emailUsuario,
+                              text: 'Email',
+                              obscureText: false,
+                            ),
+                            SizedBox(height: 10),
+                            TextFieldPadrao(
+                              controller: senhaUsuario,
+                              text: 'Senha',
+                              obscureText: true,
+                            ),
+                            SizedBox(height: 20),
+                            BotaoPrincipal(
+                              text: 'Entrar',
+                              onTap: () {
+                                verificarUsuario(
+                                    emailUsuario.text, senhaUsuario.text);
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              SizedBox(height: 25),
-              TextFieldPadrao(
-                controller: emailUsuario,
-                text: 'Email',
-                obscureText: false,
-              ),
-              SizedBox(height: 10),
-              TextFieldPadrao(
-                controller: senhaUsuario,
-                text: 'Senha',
-                obscureText: true,
-              ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 InkWell(
                   child: Padding(
@@ -133,13 +154,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   },
                 ),
               ]),
-              SizedBox(height: 25),
-              BotaoPrincipal(
-                text: 'Entre no Aplicativo',
-                onTap: () {
-                  verificarUsuario(emailUsuario.text, senhaUsuario.text);
-                },
-              ),
             ],
           ),
         ),
