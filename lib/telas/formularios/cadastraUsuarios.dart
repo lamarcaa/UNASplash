@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -5,8 +8,11 @@ import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/dropDown.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     home: CadastraUser(),
   ));
@@ -36,7 +42,12 @@ class _CadastraUserState extends State<CadastraUser> {
           "Cadastro de Usuários",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -182,61 +193,33 @@ class _CadastraUserState extends State<CadastraUser> {
         ),
       );
     } else {
-      //cadastrarUsuario();
+      cadastrarUsuario();
     }
   }
 
-  // void cadastrarUsuario(){
-  //   String nome = nomeUsuario.text;
-  //   String email = emailUsuario.text;
-  //   String tipo = dropdownValue;
-  //   String senha = "senhaPadrao123";
+  Future<void> cadastrarUsuario() async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailUsuario.text,
+        password: "senhaPadrao123",
+      );
 
-  //   try {
-  //     UserCredential userCredential =
-  //         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: email,
-  //       password: senha,
-  //     );
-
-  //     if (userCredential.user != null) {
-  //       await FirebaseFirestore.instance
-  //           .collection('usuarios')
-  //           .doc(userCredential.user!.uid)
-  //           .set({
-  //         'nome': nome,
-  //         'email': email,
-  //         'senha': senha,
-  //         'tipoUsuario': tipo,
-  //       });
-
-  //       showTopSnackBar(
-  //         Overlay.of(context),
-  //         CustomSnackBar.success(
-  //           message: "Usuário cadastrado com sucesso!",
-  //         ),
-  //       );
-
-  //       print('Usuário $email cadastrado com sucesso!');
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       showTopSnackBar(
-  //         Overlay.of(context),
-  //         CustomSnackBar.error(
-  //           message: "A senha fornecida é muito fraca.",
-  //         ),
-  //       );
-  //     } else if (e.code == 'email-already-in-use') {
-  //       showTopSnackBar(
-  //         Overlay.of(context),
-  //         CustomSnackBar.error(
-  //           message: "O email fornecido já está em uso.",
-  //         ),
-  //       );
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.success(
+          message: "Usuário cadastrado com sucesso!",
+        ),
+      );
+    } catch (e) {
+      print("Erro ao cadastrar usuário: $e");
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.error(
+          message:
+              "Erro ao cadastrar usuário. Verifique os dados e tente novamente.",
+        ),
+      );
+    }
+  }
 }

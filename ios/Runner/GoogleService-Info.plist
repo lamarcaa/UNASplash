@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDluj3Tvr2hofPJ51m_J0FK6F_A9HozscQ</string>
+	<string>AIzaSyBLh4jTgQG617R5tBd4uEOfP8G_rX3VZtM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>450481104774</string>
+	<string>875909262691</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.unasplash</string>
 	<key>PROJECT_ID</key>
-	<string>unasplash-38796</string>
+	<string>unasplash-e1751</string>
 	<key>STORAGE_BUCKET</key>
-	<string>unasplash-38796.appspot.com</string>
+	<string>unasplash-e1751.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:450481104774:ios:8e925d9428784eb8c3ee07</string>
+	<string>1:875909262691:ios:5b5bc5ee77b56e1e5b3756</string>
 </dict>
 </plist>

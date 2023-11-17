@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -5,15 +6,16 @@ import 'package:unasplash/componentes/botaoPrincipal.dart';
 import 'package:unasplash/componentes/dropDown.dart';
 import 'package:unasplash/componentes/textfield.dart';
 import 'package:unasplash/componentes/titulo.dart';
-import 'package:unasplash/helper/lista.dart';
-import 'package:unasplash/helper/usuarios.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:unasplash/firebase_options.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: FormCadastro(),
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(FormCadastro());
 }
 
 class FormCadastro extends StatelessWidget {
@@ -126,25 +128,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 
-  void trataCampos() {
-    if (nomeUsuario.text.isEmpty || emailUsuario.text.isEmpty) {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "Preencha todos os campos!",
-        ),
-      );
-    } else {
-      cadastrarUsuario();
-    }
-  }
-
-  void cadastrarUsuario() async {
+  Future<void> trataCampos() async {
     String nome = nomeUsuario.text;
     String email = emailUsuario.text;
-    String tipo = dropdownValue; 
-    String senha =
-        "senhaPadrao123"; 
+    String senha = "senhaPadrao123"; // Defina sua lógica de senha aqui
 
     try {
       UserCredential userCredential =
@@ -153,26 +140,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         password: senha,
       );
 
-      if (userCredential.user != null) {
-        await FirebaseFirestore.instance
-            .collection('usuarios')
-            .doc(userCredential.user!.uid)
-            .set({
-          'nome': nome,
-          'email': email,
-          'senha': senha,
-          'tipoUsuario': tipo,
-        });
+      showTopSnackBar(
+        Overlay.of(context),
+        CustomSnackBar.success(
+          message: "Usuário cadastrado com sucesso!",
+        ),
+      );
 
-        showTopSnackBar(
-          Overlay.of(context),
-          CustomSnackBar.success(
-            message: "Usuário cadastrado com sucesso!",
-          ),
-        );
-
-        print('Usuário $email cadastrado com sucesso!');
-      }
+      print('Usuário $email cadastrado com sucesso!');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showTopSnackBar(
@@ -186,6 +161,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Overlay.of(context),
           CustomSnackBar.error(
             message: "O email fornecido já está em uso.",
+          ),
+        );
+      } else {
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: "Erro ao cadastrar usuário: ${e.message}",
           ),
         );
       }

@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "450481104774",
-    "project_id": "unasplash-38796",
-    "storage_bucket": "unasplash-38796.appspot.com"
+    "project_number": "875909262691",
+    "firebase_url": "https://unasplash-e1751-default-rtdb.firebaseio.com",
+    "project_id": "unasplash-e1751",
+    "storage_bucket": "unasplash-e1751.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:450481104774:android:daa398f9e29242d5c3ee07",
+        "mobilesdk_app_id": "1:875909262691:android:e114153b8ac016765b3756",
         "android_client_info": {
           "package_name": "com.example.unasplash"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD0Xl6r0FdA8WLeex13tVmr1B0dcRgrkx8"
+          "current_key": "AIzaSyCv5rvM0nSH4vV_ktulWCAblRTC7j4-KPQ"
         }
       ],
       "services": {

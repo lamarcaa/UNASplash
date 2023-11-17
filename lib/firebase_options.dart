@@ -44,37 +44,41 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB9hvkJfyi3CbJeXeN8vJ29C0awk6d86yw',
-    appId: '1:450481104774:web:024f587a07ed3dbec3ee07',
-    messagingSenderId: '450481104774',
-    projectId: 'unasplash-38796',
-    authDomain: 'unasplash-38796.firebaseapp.com',
-    storageBucket: 'unasplash-38796.appspot.com',
+    apiKey: 'AIzaSyClFukvQ8vGshpQKBFnqnWr54QzhE3w9QQ',
+    appId: '1:875909262691:web:94ac1b6b40b70d615b3756',
+    messagingSenderId: '875909262691',
+    projectId: 'unasplash-e1751',
+    authDomain: 'unasplash-e1751.firebaseapp.com',
+    databaseURL: 'https://unasplash-e1751-default-rtdb.firebaseio.com',
+    storageBucket: 'unasplash-e1751.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD0Xl6r0FdA8WLeex13tVmr1B0dcRgrkx8',
-    appId: '1:450481104774:android:daa398f9e29242d5c3ee07',
-    messagingSenderId: '450481104774',
-    projectId: 'unasplash-38796',
-    storageBucket: 'unasplash-38796.appspot.com',
+    apiKey: 'AIzaSyCv5rvM0nSH4vV_ktulWCAblRTC7j4-KPQ',
+    appId: '1:875909262691:android:e114153b8ac016765b3756',
+    messagingSenderId: '875909262691',
+    projectId: 'unasplash-e1751',
+    databaseURL: 'https://unasplash-e1751-default-rtdb.firebaseio.com',
+    storageBucket: 'unasplash-e1751.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDluj3Tvr2hofPJ51m_J0FK6F_A9HozscQ',
-    appId: '1:450481104774:ios:8e925d9428784eb8c3ee07',
-    messagingSenderId: '450481104774',
-    projectId: 'unasplash-38796',
-    storageBucket: 'unasplash-38796.appspot.com',
+    apiKey: 'AIzaSyBLh4jTgQG617R5tBd4uEOfP8G_rX3VZtM',
+    appId: '1:875909262691:ios:5b5bc5ee77b56e1e5b3756',
+    messagingSenderId: '875909262691',
+    projectId: 'unasplash-e1751',
+    databaseURL: 'https://unasplash-e1751-default-rtdb.firebaseio.com',
+    storageBucket: 'unasplash-e1751.appspot.com',
     iosBundleId: 'com.example.unasplash',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDluj3Tvr2hofPJ51m_J0FK6F_A9HozscQ',
-    appId: '1:450481104774:ios:ac5ae336adf5388dc3ee07',
-    messagingSenderId: '450481104774',
-    projectId: 'unasplash-38796',
-    storageBucket: 'unasplash-38796.appspot.com',
+    apiKey: 'AIzaSyBLh4jTgQG617R5tBd4uEOfP8G_rX3VZtM',
+    appId: '1:875909262691:ios:dbcfe37b5aadba535b3756',
+    messagingSenderId: '875909262691',
+    projectId: 'unasplash-e1751',
+    databaseURL: 'https://unasplash-e1751-default-rtdb.firebaseio.com',
+    storageBucket: 'unasplash-e1751.appspot.com',
     iosBundleId: 'com.example.unasplash.RunnerTests',
   );
 }

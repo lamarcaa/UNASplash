@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -10,11 +12,15 @@ import 'package:unasplash/helper/lista.dart';
 import 'package:unasplash/telas/menuPrincipalAdm.dart';
 import 'package:unasplash/menuPrincipal/atleta/menuPrincipalAtleta.dart';
 import 'package:unasplash/menuPrincipal/treinador/menuPrincipalTreinador.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -90,8 +96,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             BotaoPrincipal(
                               text: 'Entrar',
                               onTap: () {
-                                verificarUsuario(
-                                    emailUsuario.text, senhaUsuario.text);
+                                verificarUsuario();
                               },
                             ),
                           ],
@@ -139,8 +144,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                                     BotaoSecundario(
                                       text: 'Recuperar',
                                       onTap: () {
-                                        recuperaSenha(
-                                            emailRecupera.text, context);
+                                        // recuperaSenha(
+                                        //     emailRecupera.text, context);
                                       },
                                     ),
                                   ],
@@ -161,158 +166,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 
-  void verificarUsuario(String email, String senha) {
-    if (email == '123' && senha == '123') {
-      redirecionaMenu(context, 'administrador');
-    } else if (email == '456' && senha == '456') {
-      redirecionaMenu(context, 'treinador');
-    } else if (email == '789' && senha == '789') {
-      redirecionaMenu(context, 'atleta');
-    } else if (email.isEmpty || senha.isEmpty) {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "Digite as credênciais para logar!",
-        ),
-      );
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user;
+
+  @override
+  void initState() {
+    super.initState();
+    verificarUsuario();
+  }
+
+  Future<void> verificarUsuario() async {
+    User? user = _auth.currentUser;
+
+    if (user != null) {
+      setState(() {
+        _user = user;
+      });
+
+      print('Usuário autenticado: ${user.displayName}');
     } else {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.error(
-          message: "Email ou senha inválidos, tente novamente!",
-        ),
-      );
-    }
-  }
-
-  void recuperaSenha(String email, BuildContext context) {
-    print('====== Lista de Usuários:  ====== ');
-    for (var usuario in ListaUsuarios.listaDeUsuarios) {
-      print('================================');
-      print('Nome do usuário: ' + usuario.nome);
-      print('Email do usuário: ' + usuario.email);
-      print('Tipo do usuário: ' + usuario.tipoUsuario);
-      print('Senha do usuário: ' + usuario.senha);
-      print('================================');
-    }
-
-    for (var usuario in ListaUsuarios.listaDeUsuarios) {
-      if (usuario.email == email) {
-        print('Email encontrado');
-        confirmarSenha();
-      } else if (email.isEmpty) {
-        showTopSnackBar(
-          Overlay.of(context),
-          CustomSnackBar.info(
-            message: "Digite algo!",
-          ),
-        );
-      } else if (email != usuario.email) {
-        showTopSnackBar(
-          Overlay.of(context),
-          CustomSnackBar.info(
-            message: "Email não encontrado",
-          ),
-        );
-      }
-    }
-  }
-
-  Future confirmarSenha() {
-    return showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) {
-        return Container(
-          height: double.infinity,
-          child: Wrap(
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Titulo(
-                    titulo: 'Cadastre sua nova senha',
-                    subTitulo: 'Digite a nova senha:',
-                  ),
-                  TextFieldPadrao(
-                    text: 'Nova senha',
-                    obscureText: false,
-                    controller: novaSenha,
-                  ),
-                  SizedBox(height: 10),
-                  TextFieldPadrao(
-                    text: 'Confirmar senha',
-                    obscureText: false,
-                    controller: confNovaSenha,
-                  ),
-                  SizedBox(height: 10),
-                  BotaoPrincipal(
-                    text: 'Cadastrar nova senha',
-                    onTap: () {
-                      cadastrarNovaSenha(novaSenha.text, confNovaSenha.text);
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  void cadastrarNovaSenha(String novaSenha, String confNovaSenha) {
-    print(novaSenha);
-    print(confNovaSenha);
-
-    if (novaSenha == confNovaSenha) {
-      for (var usuario in ListaUsuarios.listaDeUsuarios) {
-        if (usuario.email == emailRecupera.text) {
-          usuario.senha = novaSenha;
-          showTopSnackBar(
-            Overlay.of(context),
-            CustomSnackBar.success(
-              message: "Senha alterada com sucesso!",
-            ),
-          );
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MyApp()),
-          );
-        }
-      }
-    } else if (novaSenha.isEmpty || confNovaSenha.isEmpty) {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "Digite as senhas",
-        ),
-      );
-    } else {
-      showTopSnackBar(
-        Overlay.of(context),
-        CustomSnackBar.info(
-          message: "As senhas não coincidem",
-        ),
-      );
-    }
-  }
-
-  void redirecionaMenu(BuildContext context, String tipoUsuario) {
-    if (tipoUsuario == 'administrador') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MenuPrincipalAdm()),
-      );
-    } else if (tipoUsuario == 'treinador') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MenuPrincipalTreinador()),
-      );
-    } else if (tipoUsuario == 'atleta') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MenuPrincipalAtleta()),
-      );
+      print('Nenhum usuário autenticado');
     }
   }
 }
